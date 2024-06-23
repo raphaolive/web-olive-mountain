@@ -1,95 +1,76 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  GridItem,
+  Heading,
+  Text,
+} from "@chakra-ui/react";
+
+import cover1 from "@/assets/banner/cover1.jpeg";
+import cover2 from "@/assets/banner/cover2.jpeg";
+import cover3 from "@/assets/banner/cover3.jpeg";
+
+import Productcard from "@/components/product-card";
+import { products } from "@/utils/products";
+import Link from "next/link";
+import Carousel from "@/components/carousel";
 
 export default function Home() {
+  const slides = [
+    {
+      img: cover1,
+      label: "CAMISETAS ALPHA CO",
+      description:
+        "Coleção de camistas dry fit re alta resistencia e conforto.",
+    },
+    {
+      img: cover2,
+      label: "TODOS OS TREINOS",
+      description:
+        "Ideal para treinos na academia, crossfit e outros esportes.",
+    },
+    {
+      img: cover3,
+      label: "CONFORTO E ESTILO",
+      description:
+        "As camisetas Raglan são projetadas para proporcionar um conforto máximo.",
+    },
+  ];
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
+    <Box as="main" w="100vw" py={6} px={12}>
+      <Carousel slides={slides} />
+      <Box as="section" mt="10" margin="auto">
+        <Heading color="primary.400" fontSize="x-large" my={12}>
+          Camisetas Disponíveis
+        </Heading>
+        <Grid
+          templateColumns={{
+            base: "repeat(1, 1fr)",
+            md: "repeat(2, 1fr)",
+            lg: "repeat(3, 1fr)",
+            xl: "repeat(4, 1fr)",
+          }}
+          gap={12}
         >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+          {products.map((product) => (
+            <GridItem key={product.id}>
+              <Link href={`/${product.id}`}>
+                <Productcard
+                  name={product.name}
+                  price={product.price}
+                  img={product.img[0]}
+                  id={product.id}
+                />
+              </Link>
+            </GridItem>
+          ))}
+        </Grid>
+      </Box>
+    </Box>
   );
 }
