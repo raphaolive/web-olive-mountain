@@ -56,6 +56,7 @@ export default function Home() {
             xl: "repeat(4, 1fr)",
           }}
           gap={12}
+          px={{ base: 10, md: 20 }}
         >
           {products.map((product) => (
             <GridItem key={product.id}>

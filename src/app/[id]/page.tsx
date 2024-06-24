@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useState } from "react";
-import { CgAdd } from "react-icons/cg";
 import { FaWhatsapp } from "react-icons/fa";
 
 import ProductCarousel from "@/components/product-carousel";
@@ -26,6 +25,7 @@ import {
 
 import medidas from "@/assets/products/medidas.jpg";
 import { BiChevronRight } from "react-icons/bi";
+import Link from "next/link";
 
 export default function Product() {
   const [tabIndex, setTabIndex] = useState(0);
@@ -103,16 +103,23 @@ export default function Product() {
                 size={{ base: "sm", md: "lg" }}
                 rightIcon={<FaWhatsapp size="24px" />}
               >
-                Comprar
+                <Link
+                  href={`https://wa.me/5541995765201?text=Olá,%20tenho%20interesse%20na${encodeURIComponent(
+                    product.name
+                  )}.`}
+                  target="_blank"
+                >
+                  Comprar
+                </Link>
               </Button>
-              <Button
+              {/* <Button
                 variant="outline"
                 colorScheme="gray"
                 size={{ base: "sm", md: "lg" }}
                 rightIcon={<CgAdd size="24px" />}
               >
                 Adicionar na lista
-              </Button>
+              </Button> */}
             </ButtonGroup>
           </Box>
         </Flex>

@@ -4,6 +4,7 @@ import { fonts } from "../config/fonts";
 import { Providers } from "./providers";
 import Header from "@/components/header";
 import { Footer } from "@/components/footer";
+import { WhatsappBallon } from "@/components/whatsapp-ballon";
 
 export const metadata: Metadata = {
   title: "Catalogo | Olive Mountain",
@@ -40,6 +41,7 @@ export default function RootLayout({
       <body className={fonts.open_sans.variable}>
         <Providers>
           <Header />
+          <WhatsappBallon />
           {children}
           <Footer />
         </Providers>

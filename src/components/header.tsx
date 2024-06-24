@@ -11,7 +11,7 @@ export default function Header() {
       as="header"
       display="flex"
       alignItems="center"
-      justifyContent="space-between"
+      justifyContent="center"
       bgColor="primary.800"
       w="100vw"
       py={4}
@@ -19,13 +19,9 @@ export default function Header() {
       gap={8}
     >
       <Link href="/">
-        <Image
-          src={logo}
-          alt="logo"
-          width={40}
-          height={40}
-          style={{ borderRadius: "10px" }}
-        />
+        <Box position="relative" width="40px" height="40px">
+          <Image src={logo} alt="logo" style={{ borderRadius: "10px" }} />
+        </Box>
       </Link>
       <CustomHeading
         bold="OLIVE"
@@ -34,7 +30,7 @@ export default function Header() {
         letterSpacing={{ base: 10, md: 20, lg: 30 }}
         fontSize={{ base: "sm", md: "md" }}
       />
-      <Cart />
+      {/* <Cart /> */}
     </Box>
   );
 }

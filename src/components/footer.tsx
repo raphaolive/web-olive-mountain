@@ -11,15 +11,21 @@ export function Footer() {
     <Box
       as="footer"
       display="flex"
+      flexDirection={{ base: "column", md: "row" }}
       justifyContent="space-between"
+      textAlign="center"
       alignItems="center"
       bgColor="secondary.600"
       w="100%"
       mt={20}
       px={12}
       py={6}
+      gap={4}
     >
-      <Link href="https://www.instagram.com/olivemountain3" target="_blank">
+      <Link
+        href="https://wa.me/5541995765201?text=Olá,%20tenho%20interesse%20nas%20camisetas%20dry%20fit."
+        target="_blank"
+      >
         <Box>
           <Button
             variant="untyled"
