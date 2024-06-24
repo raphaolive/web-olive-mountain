@@ -22,11 +22,11 @@ export function Footer() {
       py={6}
       gap={4}
     >
-      <Link
-        href="https://wa.me/5541995765201?text=Olá,%20tenho%20interesse%20nas%20camisetas%20dry%20fit."
-        target="_blank"
-      >
-        <Box>
+      <Box>
+        <Link
+          href="https://wa.me/5541995765201?text=Olá,%20tenho%20interesse%20nas%20camisetas%20dry%20fit."
+          target="_blank"
+        >
           <Button
             variant="untyled"
             color="primary.200"
@@ -34,6 +34,9 @@ export function Footer() {
           >
             <Text color="primary.200">Olive Mountain</Text>
           </Button>
+        </Link>
+
+        <Link href="https://www.instagram.com/" target="_blank">
           <Button
             variant="untyled"
             color="primary.200"
@@ -41,8 +44,8 @@ export function Footer() {
           >
             <Text color="primary.200">olivemountain3</Text>
           </Button>
-        </Box>
-      </Link>
+        </Link>
+      </Box>
       <Text color="primary.200">
         &copy; Todos os direitos reservados | {year}
       </Text>

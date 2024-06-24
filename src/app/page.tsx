@@ -25,7 +25,7 @@ export default function Home() {
       img: cover1,
       label: "CAMISETAS ALPHA CO",
       description:
-        "Coleção de camistas dry fit re alta resistencia e conforto.",
+        "Coleção de camistas dry fit de alta resistencia e conforto.",
     },
     {
       img: cover2,

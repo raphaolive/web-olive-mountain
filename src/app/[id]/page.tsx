@@ -104,7 +104,7 @@ export default function Product() {
                 rightIcon={<FaWhatsapp size="24px" />}
               >
                 <Link
-                  href={`https://wa.me/5541995765201?text=Olá,%20tenho%20interesse%20na${encodeURIComponent(
+                  href={`https://wa.me/5541995765201?text=Olá,%20tenho%20interesse%20na%20${encodeURIComponent(
                     product.name
                   )}.`}
                   target="_blank"
