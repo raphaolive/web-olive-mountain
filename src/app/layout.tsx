@@ -5,6 +5,10 @@ import { Providers } from "./providers";
 import Header from "@/components/header";
 import { Footer } from "@/components/footer";
 import { WhatsappBallon } from "@/components/whatsapp-ballon";
+import { CartProvider } from "@/context/cart-context";
+import { Toaster } from "sonner";
+import { ColorModeScript } from "@chakra-ui/react";
+import theme from "@/config/theme";
 
 export const metadata: Metadata = {
   title: "Catalogo | Olive Mountain",
@@ -39,12 +43,16 @@ export default function RootLayout({
       <meta name="msapplication-TileColor" content="#da532c" />
       <meta name="theme-color" content="#ffffff" />
       <body className={fonts.open_sans.variable}>
-        <Providers>
-          <Header />
-          <WhatsappBallon />
-          {children}
-          <Footer />
-        </Providers>
+        <CartProvider>
+          <Providers>
+            <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+            <Toaster position="top-right" />
+            <Header />
+            <WhatsappBallon />
+            {children}
+            <Footer />
+          </Providers>
+        </CartProvider>
       </body>
     </html>
   );

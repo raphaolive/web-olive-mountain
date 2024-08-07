@@ -24,11 +24,16 @@ import {
 } from "@chakra-ui/react";
 
 import medidas from "@/assets/products/medidas.jpg";
-import { BiChevronRight } from "react-icons/bi";
 import Link from "next/link";
+import { CgAdd } from "react-icons/cg";
+import useCart from "@/hooks/useCart";
+import { toast } from "sonner";
+import BasicPage from "@/components/basic-page";
 
 export default function Product() {
   const [tabIndex, setTabIndex] = useState(0);
+
+  const { handleAddItemToList } = useCart();
 
   const description = [
     {
@@ -53,91 +58,89 @@ export default function Product() {
     },
   ];
 
+  function handleOnAddItemsToList() {
+    try {
+      handleAddItemToList({ ...product, amount: 1 });
+      toast.success(`${product.name} adicionada na lista!`);
+    } catch (error) {
+      toast.error(`Não foi possível adicionar ${product.name}.`);
+    }
+  }
+
   const { id } = useParams();
   const product = products.filter((item) => item.id === id)[0];
   return (
-    <Box as="main" minH="90vh" px={12}>
-      <Box maxW="1380px" margin="auto">
-        <Breadcrumb spacing="10px" my={10} separator={<BiChevronRight />}>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Catalogo</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbItem isCurrentPage>
-            <BreadcrumbLink href="#" color="primary.400">
-              {product.name}
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-        </Breadcrumb>
-        <Flex direction={{ base: "column", md: "row" }} gap={10}>
-          <ProductCarousel img={product.img} />
-          <Box display="flex" flexDir="column" gap={6}>
-            <Heading color="secondary.100" lineHeight="1" fontSize="xx-large">
-              {product.name}
+    <BasicPage title={product.name}>
+      <Flex direction={{ base: "column", md: "row" }} gap={10}>
+        <ProductCarousel img={product.img} />
+        <Box display="flex" flexDir="column" gap={6}>
+          <Heading color="secondary.100" lineHeight="1" fontSize="xx-large">
+            {product.name}
+          </Heading>
+          <UnorderedList>
+            <ListItem>
+              <Text>Modelagem: Raglan</Text>
+            </ListItem>
+            <ListItem>
+              <Text>Silk: New Tenacity</Text>
+            </ListItem>
+            <ListItem>
+              <Text>Composição: 100% Poliéster</Text>
+            </ListItem>
+          </UnorderedList>
+          <Text fontWeight="bold" fontSize="xl" color="teal">
+            <span
+              style={{
+                textDecoration: "line-through",
+                fontWeight: "normal",
+                color: "gray",
+              }}
+            >
+              R$ 42.90
+            </span>{" "}
+            R$ {product.price}
+          </Text>
+          <ButtonGroup flexDirection={{ base: "column", lg: "row" }} gap={4}>
+            <Button
+              variant="cta"
+              size={{ base: "sm", md: "lg" }}
+              rightIcon={<FaWhatsapp size="24px" />}
+            >
+              <Link
+                href={`https://wa.me/5541995765201?text=Olá,%20tenho%20interesse%20na%20${encodeURIComponent(
+                  product.name
+                )}.`}
+                target="_blank"
+              >
+                Comprar
+              </Link>
+            </Button>
+            <Button
+              variant="outline"
+              colorScheme="gray"
+              size={{ base: "sm", md: "lg" }}
+              rightIcon={<CgAdd size="24px" />}
+              onClick={handleOnAddItemsToList}
+            >
+              Adicionar na lista
+            </Button>
+          </ButtonGroup>
+        </Box>
+      </Flex>
+      <Divider my={5} />
+      <Flex direction="column" maxW="800px">
+        {description.map((item, index) => (
+          <Box key={`descricao-${index}`} mt={10}>
+            <Heading fontSize="xl" color="primary.600" letterSpacing={6}>
+              {item.topic}
             </Heading>
-            <UnorderedList>
-              <ListItem>
-                <Text>Modelagem: Raglan</Text>
-              </ListItem>
-              <ListItem>
-                <Text>Silk: New Tenacity</Text>
-              </ListItem>
-              <ListItem>
-                <Text>Composição: 100% Poliéster</Text>
-              </ListItem>
-            </UnorderedList>
-            <Text fontWeight="bold" fontSize="xl" color="teal">
-              <span
-                style={{
-                  textDecoration: "line-through",
-                  fontWeight: "normal",
-                  color: "gray",
-                }}
-              >
-                R$ 42.90
-              </span>{" "}
-              R$ {product.price}
-            </Text>
-            <ButtonGroup>
-              <Button
-                variant="cta"
-                size={{ base: "sm", md: "lg" }}
-                rightIcon={<FaWhatsapp size="24px" />}
-              >
-                <Link
-                  href={`https://wa.me/5541995765201?text=Olá,%20tenho%20interesse%20na%20${encodeURIComponent(
-                    product.name
-                  )}.`}
-                  target="_blank"
-                >
-                  Comprar
-                </Link>
-              </Button>
-              {/* <Button
-                variant="outline"
-                colorScheme="gray"
-                size={{ base: "sm", md: "lg" }}
-                rightIcon={<CgAdd size="24px" />}
-              >
-                Adicionar na lista
-              </Button> */}
-            </ButtonGroup>
+            <Text>{item.description}</Text>
           </Box>
-        </Flex>
-        <Divider my={5} />
-        <Flex direction="column" maxW="800px">
-          {description.map((item, index) => (
-            <Box key={`descricao-${index}`} mt={10}>
-              <Heading fontSize="xl" color="primary.600" letterSpacing={6}>
-                {item.topic}
-              </Heading>
-              <Text>{item.description}</Text>
-            </Box>
-          ))}
-          <Box mt={16}>
-            <Image src={medidas} alt="medidas" />
-          </Box>
-        </Flex>
-      </Box>
-    </Box>
+        ))}
+        <Box mt={16}>
+          <Image src={medidas} alt="medidas" />
+        </Box>
+      </Flex>
+    </BasicPage>
   );
 }

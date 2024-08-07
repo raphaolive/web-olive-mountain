@@ -11,7 +11,7 @@ export default function Header() {
       as="header"
       display="flex"
       alignItems="center"
-      justifyContent="center"
+      justifyContent="space-between"
       bgColor="primary.800"
       w="100vw"
       py={4}
@@ -30,7 +30,7 @@ export default function Header() {
         letterSpacing={{ base: 10, md: 20, lg: 30 }}
         fontSize={{ base: "sm", md: "md" }}
       />
-      {/* <Cart /> */}
+      <Cart />
     </Box>
   );
 }

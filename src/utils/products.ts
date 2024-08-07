@@ -29,6 +29,16 @@ import black_alpha3 from "../assets/products/black-alpha-co/3.png";
 import azul_marinho1 from "../assets/products/azul-marinho/1.png";
 import azul_marinho2 from "../assets/products/azul-marinho/2.png";
 import azul_marinho3 from "../assets/products/azul-marinho/3.png";
+import { StaticImageData } from "next/image";
+
+export type Product = {
+  name: string;
+  price: string;
+  id: string;
+  available: boolean;
+  img: StaticImageData[];
+  amount: number;
+};
 
 export const products = [
   {

@@ -31,12 +31,10 @@ export default function Carousel({ slides }: Props) {
   const slidesCount = slides?.length;
 
   const prevSlide = () => {
-    console.log("prev");
     setCurrentSlide((s) => (s === 0 ? slidesCount - 1 : s - 1));
   };
 
   const nextSlide = () => {
-    console.log("next");
     setCurrentSlide((s) => (s === slidesCount - 1 ? 0 : s + 1));
   };
 

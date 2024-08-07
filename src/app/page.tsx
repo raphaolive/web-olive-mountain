@@ -10,7 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import cover1 from "@/assets/banner/cover1.jpeg";
+import cover1 from "@/assets/banner/cover1.png";
 import cover2 from "@/assets/banner/cover2.jpeg";
 import cover3 from "@/assets/banner/cover3.jpeg";
 
@@ -44,6 +44,21 @@ export default function Home() {
   return (
     <Box as="main" w="100vw" py={6} px={12}>
       <Carousel slides={slides} />
+      <Box
+        as="section"
+        margin="auto"
+        textAlign="center"
+        color="primary.900"
+      >
+        <Text color="primary.900" fontWeight="bold" mt="10">
+          Atendimento em São Francisco Do Sul
+        </Text>
+        <Text>
+          Se você mora em outra cidade, no momento não podemos enviar seu
+          pedido.
+        </Text>
+      </Box>
+
       <Box as="section" mt="10" margin="auto">
         <Heading color="primary.400" fontSize="x-large" my={12}>
           Camisetas Disponíveis
